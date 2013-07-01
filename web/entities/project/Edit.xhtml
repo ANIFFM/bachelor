@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditProjectTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditProjectLabel_projectID}" for="projectID" />
+                    <h:inputText id="projectID" value="#{projectController.selected.projectID}" title="#{bundle.EditProjectTitle_projectID}" required="true" requiredMessage="#{bundle.EditProjectRequiredMessage_projectID}"/>
+                    <h:outputLabel value="#{bundle.EditProjectLabel_projectName}" for="projectName" />
+                    <h:inputText id="projectName" value="#{projectController.selected.projectName}" title="#{bundle.EditProjectTitle_projectName}" required="true" requiredMessage="#{bundle.EditProjectRequiredMessage_projectName}"/>
+                    <h:outputLabel value="#{bundle.EditProjectLabel_projectContact}" for="projectContact" />
+                    <h:inputText id="projectContact" value="#{projectController.selected.projectContact}" title="#{bundle.EditProjectTitle_projectContact}" />
+                    <h:outputLabel value="#{bundle.EditProjectLabel_projectDescription}" for="projectDescription" />
+                    <h:inputText id="projectDescription" value="#{projectController.selected.projectDescription}" title="#{bundle.EditProjectTitle_projectDescription}" />
+                    <h:outputLabel value="#{bundle.EditProjectLabel_projectAdditionalInformation}" for="projectAdditionalInformation" />
+                    <h:inputText id="projectAdditionalInformation" value="#{projectController.selected.projectAdditionalInformation}" title="#{bundle.EditProjectTitle_projectAdditionalInformation}" />
+                </h:panelGrid>
+                <h:commandLink action="#{projectController.update}" value="#{bundle.EditProjectSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditProjectViewLink}"/>
+                <br />
+                <h:commandLink action="#{projectController.prepareList}" value="#{bundle.EditProjectShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditProjectIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

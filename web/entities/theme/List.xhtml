@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListThemeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListThemeEmpty}" rendered="#{themeController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{themeController.items.rowCount > 0}">
+                    <h:outputText value="#{themeController.pagination.pageFirstItem + 1}..#{themeController.pagination.pageLastItem + 1}/#{themeController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{themeController.previous}" value="#{bundle.Previous} #{themeController.pagination.pageSize}" rendered="#{themeController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{themeController.next}" value="#{bundle.Next} #{themeController.pagination.pageSize}" rendered="#{themeController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{themeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListThemeTitle_themeID}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.themeID}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{themeController.prepareView}" value="#{bundle.ListThemeViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{themeController.prepareEdit}" value="#{bundle.ListThemeEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{themeController.destroy}" value="#{bundle.ListThemeDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{themeController.prepareCreate}" value="#{bundle.ListThemeCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListThemeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditUserstoryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditUserstoryLabel_userstoryID}" for="userstoryID" />
+                    <h:inputText id="userstoryID" value="#{userstoryController.selected.userstoryID}" title="#{bundle.EditUserstoryTitle_userstoryID}" required="true" requiredMessage="#{bundle.EditUserstoryRequiredMessage_userstoryID}"/>
+                    <h:outputLabel value="#{bundle.EditUserstoryLabel_userstoryName}" for="userstoryName" />
+                    <h:inputText id="userstoryName" value="#{userstoryController.selected.userstoryName}" title="#{bundle.EditUserstoryTitle_userstoryName}" required="true" requiredMessage="#{bundle.EditUserstoryRequiredMessage_userstoryName}"/>
+                    <h:outputLabel value="#{bundle.EditUserstoryLabel_userstoryDescription}" for="userstoryDescription" />
+                    <h:inputText id="userstoryDescription" value="#{userstoryController.selected.userstoryDescription}" title="#{bundle.EditUserstoryTitle_userstoryDescription}" />
+                    <h:outputLabel value="#{bundle.EditUserstoryLabel_userstoryPriority}" for="userstoryPriority" />
+                    <h:inputText id="userstoryPriority" value="#{userstoryController.selected.userstoryPriority}" title="#{bundle.EditUserstoryTitle_userstoryPriority}" />
+                    <h:outputLabel value="#{bundle.EditUserstoryLabel_userstoryBelongsToProductBacklog}" for="userstoryBelongsToProductBacklog" />
+                    <h:selectOneMenu id="userstoryBelongsToProductBacklog" value="#{userstoryController.selected.userstoryBelongsToProductBacklog}" title="#{bundle.EditUserstoryTitle_userstoryBelongsToProductBacklog}" >
+                        <f:selectItems value="#{productbacklogController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{userstoryController.update}" value="#{bundle.EditUserstorySaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditUserstoryViewLink}"/>
+                <br />
+                <h:commandLink action="#{userstoryController.prepareList}" value="#{bundle.EditUserstoryShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditUserstoryIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

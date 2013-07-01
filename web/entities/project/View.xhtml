@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewProjectTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewProjectLabel_projectID}"/>
+                    <h:outputText value="#{projectController.selected.projectID}" title="#{bundle.ViewProjectTitle_projectID}"/>
+                    <h:outputText value="#{bundle.ViewProjectLabel_projectName}"/>
+                    <h:outputText value="#{projectController.selected.projectName}" title="#{bundle.ViewProjectTitle_projectName}"/>
+                    <h:outputText value="#{bundle.ViewProjectLabel_projectContact}"/>
+                    <h:outputText value="#{projectController.selected.projectContact}" title="#{bundle.ViewProjectTitle_projectContact}"/>
+                    <h:outputText value="#{bundle.ViewProjectLabel_projectDescription}"/>
+                    <h:outputText value="#{projectController.selected.projectDescription}" title="#{bundle.ViewProjectTitle_projectDescription}"/>
+                    <h:outputText value="#{bundle.ViewProjectLabel_projectAdditionalInformation}"/>
+                    <h:outputText value="#{projectController.selected.projectAdditionalInformation}" title="#{bundle.ViewProjectTitle_projectAdditionalInformation}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{projectController.destroyAndView}" value="#{bundle.ViewProjectDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewProjectEditLink}"/>
+                <br />
+                <h:commandLink action="#{projectController.prepareCreate}" value="#{bundle.ViewProjectCreateLink}" />
+                <br />
+                <h:commandLink action="#{projectController.prepareList}" value="#{bundle.ViewProjectShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewProjectIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

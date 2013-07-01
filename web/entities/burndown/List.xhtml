@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListBurndownTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListBurndownEmpty}" rendered="#{burndownController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{burndownController.items.rowCount > 0}">
+                    <h:outputText value="#{burndownController.pagination.pageFirstItem + 1}..#{burndownController.pagination.pageLastItem + 1}/#{burndownController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{burndownController.previous}" value="#{bundle.Previous} #{burndownController.pagination.pageSize}" rendered="#{burndownController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{burndownController.next}" value="#{bundle.Next} #{burndownController.pagination.pageSize}" rendered="#{burndownController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{burndownController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBurndownTitle_burndownID}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.burndownID}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{burndownController.prepareView}" value="#{bundle.ListBurndownViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{burndownController.prepareEdit}" value="#{bundle.ListBurndownEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{burndownController.destroy}" value="#{bundle.ListBurndownDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{burndownController.prepareCreate}" value="#{bundle.ListBurndownCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListBurndownIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditProductbacklogTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditProductbacklogLabel_productBacklogID}" for="productBacklogID" />
+                    <h:inputText id="productBacklogID" value="#{productbacklogController.selected.productBacklogID}" title="#{bundle.EditProductbacklogTitle_productBacklogID}" required="true" requiredMessage="#{bundle.EditProductbacklogRequiredMessage_productBacklogID}"/>
+                    <h:outputLabel value="#{bundle.EditProductbacklogLabel_productBacklogName}" for="productBacklogName" />
+                    <h:inputText id="productBacklogName" value="#{productbacklogController.selected.productBacklogName}" title="#{bundle.EditProductbacklogTitle_productBacklogName}" required="true" requiredMessage="#{bundle.EditProductbacklogRequiredMessage_productBacklogName}"/>
+                    <h:outputLabel value="#{bundle.EditProductbacklogLabel_productBacklogDescription}" for="productBacklogDescription" />
+                    <h:inputText id="productBacklogDescription" value="#{productbacklogController.selected.productBacklogDescription}" title="#{bundle.EditProductbacklogTitle_productBacklogDescription}" />
+                    <h:outputLabel value="#{bundle.EditProductbacklogLabel_productBacklogBelongsToProject}" for="productBacklogBelongsToProject" />
+                    <h:selectOneMenu id="productBacklogBelongsToProject" value="#{productbacklogController.selected.productBacklogBelongsToProject}" title="#{bundle.EditProductbacklogTitle_productBacklogBelongsToProject}" >
+                        <f:selectItems value="#{projectController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{productbacklogController.update}" value="#{bundle.EditProductbacklogSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditProductbacklogViewLink}"/>
+                <br />
+                <h:commandLink action="#{productbacklogController.prepareList}" value="#{bundle.EditProductbacklogShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditProductbacklogIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
