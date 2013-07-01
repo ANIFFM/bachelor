@@ -2,6 +2,7 @@
 #top {
     position: relative;
     background-color: #3300CC;
+    background-image: url("logo.png");
     text-align: center; 
     color: black;
     padding: 10px;
