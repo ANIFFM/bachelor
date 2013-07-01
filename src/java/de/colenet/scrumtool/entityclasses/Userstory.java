@@ -97,7 +97,7 @@ public class Userstory implements Serializable {
     public void setUserstoryPriority(Integer userstoryPriority) {
         this.userstoryPriority = userstoryPriority;
     }
-
+    
     public Productbacklog getUserstoryBelongsToProductBacklog() {
         return userstoryBelongsToProductBacklog;
     }
